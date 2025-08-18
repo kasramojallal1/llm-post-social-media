@@ -1,0 +1,9 @@
+# config/config.yaml
+linkedin_url: "https://www.linkedin.com/in/kasra-mojallal/"
+github_usernames:
+  - "kasramojallal1"
+
+# Choose ONE of these for your resume
+resume:
+  path: "data/user/resume.pdf"   # use this if storing locally
+  url: ""                        # or put a public URL here
