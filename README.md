@@ -1,41 +1,36 @@
 # 🤖 LLM-Post-Social-Media
 
-This project is about building an **AI assistant that crafts LinkedIn posts** tailored to a user’s profile.  
-The goal: help users share frequent, relevant posts that match their style, increase visibility, and attract recruiters.  
-
-### 🛠 Tools & Tech
-- **Python** for orchestration and extractors  
-- **MongoDB** (via Docker) for storing raw documents  
-- **PyPDF2** for PDF parsing  
-- **GitHub REST API** for repo crawling  
-- **feedparser** for news feeds (AI/ML/DL papers & blogs)  
-- **dotenv** for config management  
+This project is about building an **AI assistant that crafts LinkedIn posts** tailored to a user’s profile using modern data + LLM pipelines.  
 
 ---
 
-## 🔄 Current Flow
-
-### 1. Config
-- Simple `config.yaml` stores user profile links (LinkedIn, GitHub, Resume).
-
-### 2. Data Collection
-- **Resume Extractor** (`resume.py`) → pulls raw text from a resume PDF.  
-- **LinkedIn Extractor** (`linkedin.py`) → pulls raw text from a LinkedIn profile PDF.  
-- **GitHub Extractor** (`github.py`) → crawls all repos, collects root files + README text.  
-- **News Extractor** (`news.py`) → scrapes RSS feeds (last 7 days) for AI/ML/DL research updates.
-
-All outputs are stored in `processed/` as JSON/JSONL.
-
-### 3. Orchestration
-- **`main.py`** runs all extractors in one go and refreshes processed data.
-
-### 4. Storage
-- **`load_to_mongo.py`** loads everything from `processed/` into MongoDB  
-  → database: `postcraft`, collection: `raw_docs`.  
-- Current state: ✅  resume, linkedin, github, and news successfully inserted.
+## 🛠 Tools & Tech (planned in the flow)
+- **AWS** (SageMaker for training, Lambda for orchestration, S3 for storage)  
+- **MongoDB** (raw data storage)  
+- **Qdrant** (vector database for embeddings & retrieval)  
+- **RabbitMQ** (messaging between pipelines)  
+- **Bytewax** (stream processing for cleaning & chunking)  
+- **Comet** (experiment tracking & model registry)  
+- **Opik** (model evaluation)  
 
 ---
 
-At this point:  
-We have a **working data collection pipeline** with MongoDB storage as the raw source of truth.  
-Next steps will involve **feature processing → chunking → embeddings → vector database**.
+## 🔄 Flow
+
+### 1. Data Collection
+Raw sources are ingested from LinkedIn, GitHub, Resume, and AI/ML/DL news.  
+Data is normalized into JSON/JSONL and stored in **MongoDB**.
+
+### 2. Feature Pipeline
+Documents are cleaned, chunked, embedded with LLM-based models, and stored in **Qdrant** for semantic retrieval.  
+Processing and updates are streamed through **Bytewax**, with **RabbitMQ** ensuring reliable communication between stages.
+
+### 3. Training
+Instruction-style datasets are generated from user content.  
+Fine-tuning is performed with **QLoRA** on **AWS SageMaker**, tracked in **Comet**, and evaluated via **Opik**.  
+The best-performing models are pushed to a registry.
+
+### 4. Inference
+Deployed models are served on **SageMaker endpoints**, enhanced with RAG queries from **Qdrant**.  
+Requests flow through **AWS Lambda** for orchestration.  
+An optional UI layer allows direct interaction, monitoring, and drafting LinkedIn posts.
