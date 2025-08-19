@@ -1,0 +1,26 @@
+{
+  "topic": "LLM security",
+  "audience": "recruiters, hiring managers, ML engineers",
+  "style": "professional",
+  "retrieval": [
+    {
+      "source": "news",
+      "title": "(no-title)",
+      "url": "https://arxiv.org/abs/2508.10991"
+    },
+    {
+      "source": "news",
+      "title": "(no-title)",
+      "url": "https://arxiv.org/abs/2504.05147"
+    }
+  ],
+  "draft": {
+    "one_liner": "Ensuring the security of Large Language Models (LLMs) is critical for their safe deployment.",
+    "body": "As ML researchers, we must prioritize LLM security to address vulnerabilities that could be exploited in real-world applications. Recent advancements, such as the MCP-AttackBench, provide a comprehensive benchmark for simulating diverse attack vectors (https://arxiv.org/abs/2508.10991). Additionally, techniques like format-preserving encryption and metric differential privacy are essential for safeguarding sensitive data processed by LLMs (https://arxiv.org/abs/2504.05147). By integrating these methods, we can enhance the robustness of our models and mitigate risks associated with AI usage.",
+    "hashtags": "#LLMSecurity #AI #MachineLearning #DataPrivacy #Robustness",
+    "citations": [
+      "MCP-AttackBench: https://arxiv.org/abs/2508.10991",
+      "Prεεmpt: https://arxiv.org/abs/2504.05147"
+    ]
+  }
+}
