@@ -4,10 +4,16 @@ from datetime import datetime, timezone, timedelta
 
 import feedparser
 
-# Minimal MVP feeds (add more later)
+# Minimal MVP feeds (expanded for AI/ML/DL papers)
 FEEDS = {
-    "arxiv-cs.LG": "https://arxiv.org/rss/cs.LG",
-    "arxiv-cs.CR": "https://arxiv.org/rss/cs.CR",
+    # Core ML / AI
+    "arxiv-cs.LG": "https://arxiv.org/rss/cs.LG",  # Machine Learning
+    "arxiv-stat.ML": "https://arxiv.org/rss/stat.ML",
+    "arxiv-cs.AI": "https://arxiv.org/rss/cs.AI",
+    "arxiv-cs.CL": "https://arxiv.org/rss/cs.CL",  # Computation & Language (NLP)
+    "arxiv-cs.CV": "https://arxiv.org/rss/cs.CV",  # Computer Vision
+    "arxiv-cs.IR": "https://arxiv.org/rss/cs.IR",  # Information Retrieval (RAG-ish topics)
+    "arxiv-cs.RO": "https://arxiv.org/rss/cs.RO",  # Robotics (often relevant)
 }
 
 MAX_AGE_DAYS = 7  # keep at most 1 week old
