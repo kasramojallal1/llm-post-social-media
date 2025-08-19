@@ -9,16 +9,28 @@ services:
       MONGO_INITDB_DATABASE: postcraft
     volumes:
       - mongo_data:/data/db
+    # optional: enable replica set via command (Docker way)
+    command: ["mongod", "--replSet", "rs0"]
 
   qdrant:
     image: qdrant/qdrant:latest
     container_name: postcraft-qdrant
     ports:
-      - "6333:6333"   # HTTP
-      - "6334:6334"   # gRPC
+      - "6333:6333"
+      - "6334:6334"
     volumes:
       - qdrant_data:/qdrant/storage
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: postcraft-rabbitmq
+    ports:
+      - "5672:5672"   # AMQP
+      - "15672:15672" # mgmt UI (http://localhost:15672, user/pass: guest/guest)
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
 
 volumes:
   mongo_data:
   qdrant_data:
+  rabbitmq_data:
